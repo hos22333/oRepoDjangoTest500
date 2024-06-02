@@ -34,6 +34,7 @@
   <ItemGroup>
     <Compile Include="app\forms.py" />
     <Compile Include="app\models.py" />
+    <Compile Include="app\z_module1.py" />
     <Compile Include="app\tests.py" />
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
@@ -57,6 +58,19 @@
     <Folder Include="DjangoTest500\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\CostM.html" />
+    <Content Include="app\templates\app\DataSheetM.html" />
+    <Content Include="app\templates\app\form.html" />
+    <Content Include="app\templates\app\result.html" />
+    <Content Include="app\templates\app\WebPage01.html" />
+    <Content Include="app\templates\app\WebPage02.html" />
+    <Content Include="app\templates\app\WebPage03.html" />
+    <Content Include="app\templates\app\WebPage04.html" />
+    <Content Include="app\templates\app\WebPage05.html" />
+    <Content Include="app\templates\app\WebPage06.html" />
+    <Content Include="app\templates\app\WebPage07.html" />
+    <Content Include="app\templates\app\WebPage08.html" />
+    <Content Include="app\templates\app\WebPage09.html" />
     <Content Include="dockerfile" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
@@ -82,8 +96,6 @@
     <Content Include="app\static\app\scripts\respond.js" />
     <Content Include="app\static\app\scripts\respond.min.js" />
     <Content Include="app\static\app\scripts\_references.js" />
-    <Content Include="app\templates\app\about.html" />
-    <Content Include="app\templates\app\contact.html" />
     <Content Include="app\templates\app\index.html" />
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />

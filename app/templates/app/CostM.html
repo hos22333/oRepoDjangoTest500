@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #ADD8E6;
+        }
+
+        .orange {
+            background-color: #FFA500;
+        }
+
+        .light-orange {
+            background-color: #FFCC99;
+        }
+
+        .light-blue {
+            background-color: #B0FFFF;
+        }
+
+        .light-green {
+            background-color: #90EE90;
+        }
+
+        .merged {
+            background-color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <!-- Tab links -->
+
+
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Cost Sheet</button>
+        <button class="tablinks" onclick="openCity(event, 'Paris')">Data Sheet</button>
+        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Other Data and Drawing Code</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="London" class="tabcontent">
+
+        <table>
+            <tr><th colspan="5">Mechanical Screen Cost Sheet</th></tr>
+            <tr class="orange"><td colspan="5">Specifications</td></tr>
+            <tr><td>Project Name</td><td colspan="4" class="merged"> {{val11}} </td></tr>
+            <tr><td>Channel Width</td>      <td>{{val01}}</td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td>Channel Depth</td>      <td>{{val02}}</td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td>Water level</td>        <td>{{val03}}</td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td>Bar Spacing</td>        <td>{{val04}}</td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td>Bar Thickness</td>      <td>{{val05}}</td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td>Bar Width</td>          <td>{{val06}}</td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td>Inclination</td>        <td>{{val07}}</td><td>Deg</td><td colspan="2" class="merged"></td></tr>
+
+            <tr class="orange"><td colspan="5">Raw Material</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY (Kg)</td>
+                <td>Unit</td>
+                <td>Cost (LE/Kg)</td>
+                <td>Total cost (LE)</td>
+            </tr>
+            <tr><td>Bars & Bars frame</td>      <td rowspan="9">{{oooWeight}}</td>  <td rowspan="9"> Kg </td>    <td rowspan="9">{{val31}}</td>     <td rowspan="9">{{oooMaterialcost}}</td></tr>
+            <tr><td>Left & Right Side</td>
+            <tr><td>Structure Angles</td>
+            <tr><td>Chain Guides</td>
+            <tr><td>Cover Frame</td>
+            <tr><td>Bottom Plate</td>
+            <tr><td>Scraper</td>
+            <tr><td>Rake</td>
+            <tr><td>Drive shaft</td>
+            <tr class="light-green"><td colspan="4">Total</td>                                                                                      <td>{{oooMaterialcost}}</td></tr>
+
+            <tr class="orange"><td colspan="5">Imported items</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY</td>
+                <td>Unit</td>
+                <td>Cost per unit</td>
+                <td>Total cost</td>
+            </tr>
+            <tr><td>Gear Motor</td>             <td> 1 </td><td> Units  </td><td> {{val41}} </td><td> {{val41}} </td></tr>
+            <tr><td>Bearing with tension</td>   <td> 1 </td><td> Units  </td><td> {{val42}} </td><td> {{val42}} </td></tr>
+            <tr><td>Chain stst 316</td>         <td> 1 </td><td> M      </td><td> {{val43}} </td><td> {{val43}} </td></tr>
+            <tr><td>Drive shaft</td>            <td> 1 </td><td> M      </td><td> {{val44}} </td><td> {{val44}} </td></tr>
+            <tr><td>Sprocket</td>               <td> 1 </td><td> L.S    </td><td> {{val45}} </td><td> {{val45}} </td></tr>
+            <tr><td>Rake Artelon</td>           <td> 1 </td><td> L.S    </td><td> {{val46}} </td><td> {{val46}} </td></tr>
+            <tr><td>Accessories</td>            <td> 1 </td><td> L.S    </td><td> {{val47}} </td><td> {{val47}} </td></tr>
+            <tr><td>Control panel</td>          <td> 1 </td><td> Unit   </td><td> {{val48}} </td><td> {{val48}} </td></tr>
+            <tr><td>Differential Level</td>     <td> 1 </td><td> Unit   </td><td> {{val49}} </td><td> {{val49}} </td></tr>
+            <tr class="light-green"><td colspan="4">Total</td>          <td>{{oooStandardCost}}</td></tr>
+
+            <tr class="orange"><td colspan="5">Manufacturing cost</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY</td>
+                <td>Unit</td>
+                <td>Cost per unit</td>
+                <td>Total cost</td>
+            </tr>
+            <tr><td>Supervision & man power</td>    <td> 1 </td><td> L.S </td><td> {{val53}} </td><td> {{val53}} </td></tr>
+            <tr><td>Manufacturing</td>              <td> 1 </td><td> L.S </td><td> {{val54}} </td><td> {{val54}} </td></tr>
+            <tr><td>Transportation</td>             <td> 1 </td><td> L.S </td><td> {{val55}} </td><td> {{val55}} </td></tr>
+            <tr><td>Consumables</td>                <td> 1 </td><td> L.S </td><td> {{val56}} </td><td> {{val56}} </td></tr>
+            <tr><td>Packing</td>                    <td> 1 </td><td> L.S </td><td> {{val57}} </td><td> {{val57}} </td></tr>
+            <tr class="light-green"><td colspan="4">Total</td>  <td>{{oooManufacturingCost}}</td>
+
+            <tr class="light-blue"><td colspan="4">Total cost per unit</td>     <td><strong>{{oooSumOfCost}}</strong></td></tr>
+            <tr class="light-blue"><td colspan="4">Margin Factor</td>           <td>{{val71}}</td></tr>
+            <tr class="light-blue"><td colspan="4">Price</td>                   <td><strong>{{oooPrice}}</strong></td></tr>
+            <tr class="light-blue"><td colspan="4">Risk factor</td>             <td>{{val72}}</td></tr>
+            <tr class="light-blue"><td colspan="4">Total Selling Price</td>     <td><strong>{{oooTotalPrice}}</strong></td></tr>
+        </table>
+
+
+    </div>
+
+    <div id="Paris" class="tabcontent">
+
+
+        <table>
+            <tr>
+                <td class="medium">Project</td>
+                <td class="wide"> {{val11}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Equipment</td>
+                <td class="wide">Mechanical Coarse Screen</td>
+            </tr>
+            <tr>
+                <td class="medium">Title</td>
+                <td class="wide">Technical Datasheet</td>
+            </tr>
+            <tr>
+                <td class="medium">Issue Date</td>
+                <td class="wide"> {{oooDateToday}} </td>
+            </tr>
+
+            <tr><th colspan="2">Technical data</th></tr>
+            <tr>
+                <td class="medium orange" colspan="2">General Data</td>
+            </tr>
+            <tr>
+                <td class="medium">Manufacturer</td>
+                <td class="wide"> Ietos Factory </td>
+            </tr>
+            <tr>
+                <td class="medium">Service</td>
+                <td class="wide"> Inlet Area </td>
+            </tr>
+            <tr>
+                <td class="medium">Fluid</td>
+                <td class="wide"> Sewage </td>
+            </tr>
+            <tr>
+                <td class="medium">Operation</td>
+                <td class="wide"> Automatic & Manual </td>
+            </tr>
+            <tr>
+                <td class="medium">Quantity of Units</td>
+                <td class="wide"> 1 </td>
+            </tr>
+            <tr>
+                <td class="medium">Country of Origin</td>
+                <td class="wide"> Egypt </td>
+            </tr>
+            <tr>
+                <td class="medium orange" colspan="2">Design</td>
+            </tr>
+            <tr>
+                <td class="medium">Type</td>
+                <td class="wide"> Mechanical Coarse Screen-Multi rack </td>
+            </tr>
+            <tr>
+                <td class="medium">Channel Depth</td>
+                <td class="wide"> {{val01}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Channel Width</td>
+                <td class="wide"> {{val02}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Water Depth</td>
+                <td class="wide"> {{val03}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Bar Dimensions</td>
+                <td class="wide"> {{val05}} x {{val06}}</td>
+            </tr>
+            <tr>
+                <td class="medium">Bar Spacing</td>
+                <td class="wide"> {{val04}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Inclination Degree</td>
+                <td class="wide"> {{val07}} </td>
+            </tr>
+            <tr>
+                <td class="medium orange" colspan="2">Drive Unit Data</td>
+            </tr>
+            <tr>
+                <td class="medium">Power</td>
+                <td class="wide"> {{oooPower}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Power Supply</td>
+                <td class="wide"> 380/3/50 </td>
+            </tr>
+            <tr>
+                <td class="medium">Driving Unit Service Factor</td>
+                <td class="wide"> More than 2 </td>
+            </tr>
+            <tr>
+                <td class="medium">Motor Insulation Protection</td>
+                <td class="wide"> IP 65 </td>
+            </tr>
+            <tr>
+                <td class="medium">Isolation / Temp. Class</td>
+                <td class="wide"> Class F/B </td>
+            </tr>
+            <tr>
+                <td class="medium">Motor Brakes</td>
+                <td class="wide"> Included </td>
+            </tr>
+            <tr>
+                <td class="medium">Torque limiter</td>
+                <td class="wide"> Included </td>
+            </tr>
+            <tr>
+                <td class="medium">Gear Motor</td>
+                <td class="wide">~~~~~</td>
+            </tr>
+            <tr>
+                <td class="medium orange" colspan="2">Control Panel Data</td>
+            </tr>
+            <tr>
+                <td class="medium">Voltage</td>
+                <td class="wide"> 380 </td>
+            </tr>
+            <tr>
+                <td class="medium">Phase</td>
+                <td class="wide"> 3 </td>
+            </tr>
+            <tr>
+                <td class="medium">Frequency</td>
+                <td class="wide"> 50 </td>
+            </tr>
+            <tr>
+                <td class="medium">Insulation Protection</td>
+                <td class="wide"> IP 54 </td>
+            </tr>
+            <tr>
+                <td class="medium">Panel Thickness</td>
+                <td class="wide"> 2 </td>
+            </tr>
+            <tr>
+                <td class="medium">Panel Material </td>
+                <td class="wide"> Coated Steel </td>
+            </tr>
+            <tr>
+                <td class="medium">Components Type</td>
+                <td class="wide"> Schneider </td>
+            </tr>
+            <tr>
+                <td class="medium orange" colspan="2">Material</td>
+            </tr>
+            <tr>
+                <td class="medium">Screen Bars</td>
+                <td class="wide"> {{val21}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Frame </td>
+                <td class="wide"> {{val22}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Rack</td>
+                <td class="wide"> {{val23}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Rack (Teeth)</td>
+                <td class="wide"> {{val24}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Sprockets</td>
+                <td class="wide"> {{val25}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Dead Plate</td>
+                <td class="wide"> {{val26}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Chain</td>
+                <td class="wide"> {{val27}} </td>
+            </tr>
+            <tr>
+                <td class="medium">Bolts & Nuts</td>
+                <td class="wide"> {{val28}} </td>
+            </tr>
+            <tr>
+                <td class="medium orange" colspan="2">Spare Parts</td>
+            </tr>
+            <tr>
+                <td class="medium" colspan="2">One Rack</td>
+            </tr>
+            <tr>
+                <td class="medium" colspan="2">Two sets of bearings</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div id="Tokyo" class="tabcontent">
+
+        <h3>Estimated Weight</h3>
+        <p>{{oooWeight}}</p>
+
+        <h3>Motor Power</h3>
+        <p>{{oooPower}}</p>
+
+        <h3>Motor Speed</h3>
+        <p>{{oooSpeed}}</p>
+
+        <h3>Drawing Code</h3>
+        <p>{{oooDrawingCode}}</p>
+
+
+    </div>
+
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+
+
+</body>
+</html>

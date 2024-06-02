@@ -1,5 +1,5 @@
 """
-Definition of urls for DjangoTest500.
+Definition of urls for DjangoWebProject1_Test1.
 """
 
 from datetime import datetime
@@ -11,8 +11,26 @@ from app import forms, views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('contact/', views.contact, name='contact'),
-    path('about/', views.about, name='about'),
+    path('WebPage01/', views.WebPage01, name='WebPage01'),
+    path('WebPage02/', views.WebPage02, name='WebPage02'),
+    path('WebPage03/', views.WebPage03, name='WebPage03'),
+    path('WebPage04/', views.WebPage04, name='WebPage04'),
+    path('WebPage05/', views.WebPage05, name='WebPage05'),
+    path('WebPage06/', views.WebPage06, name='WebPage06'),
+    path('WebPage07/', views.WebPage07, name='WebPage07'),
+    path('WebPage08/', views.WebPage08, name='WebPage08'),
+    path('WebPage09/', views.WebPage09, name='WebPage09'),
+
+    path('CostM/', views.CostM, name='CostM'),
+    path('WebPage01/CostM/', views.CostM, name='CostM'),    
+
+    path('DataSheetM/', views.DataSheetM, name='DataSheetM'),
+    path('WebPage01/DataSheetM/', views.DataSheetM, name='DataSheetM'),
+
+    path("result", views.result, name="result"),
+    path("form/result", views.result, name="result"),
+    path('form/', views.form, name='form'),
+
     path('login/',
          LoginView.as_view
          (
