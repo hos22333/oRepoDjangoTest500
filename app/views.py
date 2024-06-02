@@ -1,7 +1,7 @@
 """
 Definition of views.
 """
-from turtle import Screen
+#from turtle import Screen
 from .z_module1 import *
 
 from ctypes.wintypes import FLOAT
