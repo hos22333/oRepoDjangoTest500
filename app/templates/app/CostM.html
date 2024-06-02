@@ -91,7 +91,11 @@
                 <td>Cost per unit</td>
                 <td>Total cost</td>
             </tr>
+
+            {% if val41 != 130000.0 %}
             <tr><td>Gear Motor</td>             <td> 1 </td><td> Units  </td><td> {{val41}} </td><td> {{val41}} </td></tr>
+            {% endif %}
+
             <tr><td>Bearing with tension</td>   <td> 1 </td><td> Units  </td><td> {{val42}} </td><td> {{val42}} </td></tr>
             <tr><td>Chain stst 316</td>         <td> 1 </td><td> M      </td><td> {{val43}} </td><td> {{val43}} </td></tr>
             <tr><td>Drive shaft</td>            <td> 1 </td><td> M      </td><td> {{val44}} </td><td> {{val44}} </td></tr>
@@ -131,6 +135,8 @@
 
 
         <table>
+
+            <tr><th colspan="2">Mechanical Screen Data Sheet</th></tr>
             <tr>
                 <td class="medium">Project</td>
                 <td class="wide"> {{val11}} </td>
