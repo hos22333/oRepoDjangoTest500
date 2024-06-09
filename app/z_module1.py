@@ -1,5 +1,8 @@
 import math
 
+##########################
+#         Screen        #
+##########################
 class cScreen:
     def __init__(self):
         ################################ INPUT ################################
@@ -125,25 +128,28 @@ class cScreen:
 
         self.DrawingCode = ''.join(digit_to_letter.get(char, char) for char in concatenated_string)
 
+##########################
+#         Belt           #
+##########################
+class cBelt:
+    def __init__(self, length, width, belt_weight_per_meter, part_weight_per_meter, friction, velocity, fos, eff):
+        self.length                 = length/1000
+        self.width                  = width/1000
+        self.belt_weight_per_meter  = belt_weight_per_meter
+        self.part_weight_per_meter  = part_weight_per_meter
+        self.friction               = friction
+        self.velocity               = velocity
+        self.fos                    = fos
+        self.eff                    = eff
 
-
-
-class BeltCalc500:
-    def __init__(self, B500var1, B500var2, B500var3, B500var4, B500var5, B500var6, B500var7):
-        self.length = B500var1
-        self.belt_weight_per_meter = B500var2
-        self.part_weight_per_meter = B500var3
-        self.friction = B500var4
-        self.velocity = B500var5
-        self.fos = B500var6
-        self.eff = B500var7
+        self.Power = None
 
     def calculate_power(self):
         # Calculate belt weight
-        belt_weight = self.belt_weight_per_meter * self.length * 2
+        belt_weight = self.belt_weight_per_meter * self.length * self.width * 2
 
         # Calculate part weight
-        part_weight = self.part_weight_per_meter * self.length
+        part_weight = self.part_weight_per_meter * self.length * self.width
 
         # Calculate normal force
         normal_force = (belt_weight + part_weight) * 10
@@ -159,42 +165,37 @@ class BeltCalc500:
 
         # Format the power string
         power_str = f"{total_power:.2f}"
-
-        # Create the result string
-        ret_str1 = f"Power: {power_str} Wat"
+        self.Power = power_str
 
         # Log the result (placeholder function for WriteToSheetBelt)
         self.log_to_sheet(self.length, self.belt_weight_per_meter, self.part_weight_per_meter, self.friction, self.velocity, self.fos, self.eff, power_str, "0", "0")
-
-        # Return the result as a dictionary
-        result = {
-            "value1": ret_str1,
-        }
-
-        return result
+        
 
     def log_to_sheet(self, *args):
         # Placeholder function for WriteToSheetBelt
         print(f"Logging to sheet: {args}")
 
-
-# Example usage:
-calc = BeltCalc500(10, 2, 3, 0.5, 1, 1.5, 0.9)
-result = calc.calculate_power()
-print(result)
-
-
-class GritCalc500:
+##########################
+#         Gritremoval    #
+##########################
+class cGrit:
     def __init__(self, G500var1, G500var2, G500var3, G500var4, G500var5, G500var6, G500var7, G500var8, G500var9):
-        self.n_channel = G500var1
-        self.channel_width = G500var2 / 1000
-        self.civil_width = G500var3 / 1000
-        self.bridge_length = G500var4 / 1000
-        self.friction = G500var5
-        self.velocity = G500var6 / 1000
-        self.fos = G500var7
-        self.eff = G500var8
-        self.wheel_diameter = G500var9 / 1000
+        self.n_channel          = G500var1
+        self.channel_width      = G500var2 / 1000
+        self.civil_width        = G500var3 / 1000
+        self.bridge_length      = G500var4 / 1000
+        self.friction           = G500var5
+        self.velocity           = G500var6 / 1000
+        self.fos                = G500var7
+        self.eff                = G500var8
+        self.wheel_diameter     = G500var9 / 1000
+        
+        self.Power = None
+        self.DriveRPM = None
+        self.Weight_Total = None
+        self.Weight_steel = None
+        self.Weight_scraper = None
+        self.Power_lifting = None
 
     def calculate(self):
         weight_per_meter_sheet = 80
@@ -213,13 +214,18 @@ class GritCalc500:
 
         total_weight_steel = walkway_weight + weight_end_carriage_total + weight_handrail_total
         total_weight = total_weight_steel + weight_scraper_total
+        
+        self.Weight_Total = f"{total_weight:.2f}"
+        self.Weight_steel = f"{total_weight_steel:.2f}"
+        self.Weight_scraper = f"{weight_scraper_total:.2f}"
 
         # Power calculations
         normal_force = total_weight * 10
         horizontal_force = normal_force * self.friction
         calc_power = horizontal_force * self.velocity
         total_power = (calc_power * self.fos) / self.eff
-        power_str = f"{total_power:.2f}"
+        self.Power = f"{total_power:.2f}"
+
 
         # Lifting power calculations
         lifting_wheel_dia = 0.2
@@ -228,50 +234,37 @@ class GritCalc500:
         lifting_weight = weight_per_meter_scraper * self.channel_width * self.n_channel
         lifting_power = lifting_weight * 10 * lifting_velocity
         lifting_motor_power = (lifting_power * self.fos) / 0.7
-        lifting_motor_power_str = f"{lifting_motor_power:.2f}"
+        self.Power_lifting = f"{lifting_motor_power:.2f}"
 
         # Speed calculations
         speed_rps = self.velocity / (3.14 * self.wheel_diameter)
         speed_rpm = speed_rps * 60
-        str_speed_rpm = f"{speed_rpm:.2f}"
+        self.DriveRPM =  f"{speed_rpm:.2f}"
+           
+        #self.log_to_sheet(self.n_channel, self.channel_width * 1000, self.civil_width * 1000, self.bridge_length * 1000, self.friction, self.velocity * 1000, self.fos, self.eff, self.wheel_diameter * 1000, power_str, total_weight, total_weight_steel, weight_scraper_total, lifting_motor_power_str, str_speed_rpm)
 
-        ret_str1 = f"Power: {power_str} Wat"
-        ret_str2 = f"Weight Total: ~ {total_weight} Kg"
-        ret_str3 = f"Steel: ~ {total_weight_steel} Kg"
-        ret_str4 = f"Scraper: ~ {weight_scraper_total} Kg"
-        ret_str5 = f"Lifting Power: {lifting_motor_power_str} Wat"
-        ret_str6 = f"Speed: {str_speed_rpm} RPM.."
 
-        self.log_to_sheet(self.n_channel, self.channel_width * 1000, self.civil_width * 1000, self.bridge_length * 1000, self.friction, self.velocity * 1000, self.fos, self.eff, self.wheel_diameter * 1000, power_str, total_weight, total_weight_steel, weight_scraper_total, lifting_motor_power_str, str_speed_rpm)
-
-        result = {
-            "value1": ret_str1,
-            "value2": ret_str2,
-            "value3": ret_str3,
-            "value4": ret_str4,
-            "value5": ret_str5,
-            "value6": ret_str6,
-        }
-
-        return result
 
     def log_to_sheet(self, *args):
         # Placeholder function for WriteToSheetGritremoval
         print(f"Logging to sheet: {args}")
 
-# Example usage:
-calc = GritCalc500(10, 2000, 3000, 4000, 0.5, 6000, 1.5, 0.9, 1000)
-result = calc.calculate()
-print(result)
-
-
-class PSTCalc500:
+##########################
+#         PST            #
+##########################
+class cPST:
     def __init__(self, P500var1, P500var2, P500var3, P500var4, P500var5):
-        self.walkway_length = P500var1
-        self.friction = P500var2
-        self.velocity = P500var3
-        self.fos = P500var4
-        self.eff = P500var5
+        self.walkway_length     = P500var1/2000
+        self.friction           = P500var2
+        self.velocity           = P500var3
+        self.fos                = P500var4
+        self.eff                = P500var5
+                
+        self.Power = None
+        self.Weight_Total = None
+        self.Weight_steel = None
+        self.Weight_scraper = None
+
 
     def calculate(self):
         weight_per_meter_sheet = 80
@@ -291,46 +284,30 @@ class PSTCalc500:
         total_weight_steel = walkway_weight + weight_end_carriage_total + weight_handrail_total
         total_weight = total_weight_steel + weight_scraper_total
 
+        self.Weight_Total = total_weight
+        self.Weight_steel = total_weight_steel
+        self.Weight_scraper = weight_scraper_total
+
         # Power calculations
         normal_force = total_weight * 10
         horizontal_force = normal_force * self.friction
         calc_power = horizontal_force * self.velocity
         total_power = (calc_power * self.fos) / self.eff
-
-        ret_str1 = f"Power: {total_power} Wat"
-        ret_str2 = f"Weight Total: ~ {total_weight} Kg"
-        ret_str3 = f"Steel: ~ {total_weight_steel} Kg"
-        ret_str4 = f"Scraper: ~ {weight_scraper_total} Kg"
-
-        self.log_to_sheet(self.walkway_length, self.friction, self.velocity, self.fos, self.eff, total_power, total_weight, total_weight_steel, weight_scraper_total, "0", "0", "0", "0", "0", "0")
-
-        result = {
-            "value1": ret_str1,
-            "value2": ret_str2,
-            "value3": ret_str3,
-            "value4": ret_str4,
-        }
-
-        return result
-
-    def log_to_sheet(self, *args):
-        # Placeholder function for WriteToSheetPST
-        print(f"Logging to sheet: {args}")
-
-# Example usage:
-calc = PSTCalc500(10, 0.5, 1, 1.5, 0.9)
-result = calc.calculate()
-print(result)
-
-
-class ThickenerCalc500:
+        self.Power = total_power
+ 
+##########################
+#        Thickener       #
+##########################
+class cThickener:
     def __init__(self, T500var1, T500var2, T500var3, T500var4, T500var5, T500var6):
-        self.diameter = T500var1
-        self.n_arm = T500var2
-        self.velocity = T500var3
-        self.fos = T500var4
-        self.eff = T500var5
-        self.load_per_meter = T500var6
+        self.diameter           = T500var1/1000
+        self.n_arm              = T500var2
+        self.velocity           = T500var3
+        self.fos                = T500var4
+        self.eff                = T500var5
+        self.load_per_meter     = T500var6
+        
+        self.Power = None
 
     def calculate(self):
         # Weight calculations
@@ -340,24 +317,17 @@ class ThickenerCalc500:
 
         ret_str1 = f"Power: {total_power} Wat"
 
-        self.log_to_sheet(self.diameter, self.n_arm, self.velocity, self.fos, self.eff, self.load_per_meter, total_power, "0", "0", "0", "0", "0", "0", "0", "0")
+        self.Power = total_power
 
-        result = {
-            "value1": ret_str1,
-        }
-
-        return result
+  
 
     def log_to_sheet(self, *args):
         # Placeholder function for WriteToSheetThickener
         print(f"Logging to sheet: {args}")
 
-# Example usage:
-calc = ThickenerCalc500(10, 2, 1, 1.5, 0.9, 100)
-result = calc.calculate()
-print(result)
-
-
+##########################
+#        Mixer Rec       #
+##########################
 class MixerRec500:
     def __init__(self, var1, var2, var3, var4, var5, var6, var7, var8, var9):
         self.length = var1
@@ -405,12 +375,9 @@ class MixerRec500:
         # Placeholder function for WriteToSheetMixer
         print(f"Logging to sheet: {args}")
 
-# Example usage:
-calc = MixerRec500(10, 5, 2, 1.2, 0.8, 0.5, 1e-6, 1000, 1.5)
-result = calc.calculate()
-print(result)
-
-
+##########################
+#        Mixer Cir       #
+##########################
 class MixerCir500:
     def __init__(self, var1, var3, var4, var5, var6, var7, var8, var9):
         self.length = var1
@@ -457,11 +424,9 @@ class MixerCir500:
         # Placeholder function for WriteToSheetMixer
         print(f"Logging to sheet: {args}")
 
-# Example usage:
-calc = MixerCir500(10, 5, 1.2, 0.8, 0.5, 1e-6, 1000, 1.5)
-result = calc.calculate()
-print(result)
-
+##########################
+#         Tanks Rec      #
+##########################
 
 class RecTankCalc500:
     def __init__(self, RT500var1, RT500var2, RT500var3, RT500var4, RT500var5, RT500var6, RT500var7):
@@ -501,10 +466,5 @@ class RecTankCalc500:
     def log_to_sheet(self, *args):
         # Placeholder function for WriteToSheetRecTank
         print(f"Logging to sheet: {args}")
-
-# Example usage:
-calc = RecTankCalc500(10, 5, 2, 1.2, 0.8, 0.5, 100)
-result = calc.calculate()
-print(result)
 
 

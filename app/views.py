@@ -139,7 +139,26 @@ def WebPage09(request):
         }
     )
 
-def CostM(request):
+
+
+def oResuS(request):
+    
+    oCostS = "Yes"
+    oCostB = "No"
+    oCostG = "No"
+    oCostP = "No"
+    oCostT = "No"
+    
+    oDataS = "Yes"
+    oDataB = "No"
+    oDataG = "No"
+    oDataP = "No"
+    oDataT = "No"
+
+
+
+
+
     # GET THE VALUES FROM HTML
     val03 = float(request.GET["num03"])
     val04 = float(request.GET["num04"])
@@ -235,6 +254,18 @@ def CostM(request):
         request,
         'app/CostM.html',
         {
+            'oCostS':oCostS,
+            'oCostB':oCostB,
+            'oCostG':oCostG,
+            'oCostP':oCostP,
+            'oCostT':oCostT,
+            
+            'oDataS':oDataS,
+            'oDataB':oDataB,
+            'oDataG':oDataG,
+            'oDataP':oDataP,
+            'oDataT':oDataT,
+
             'oooTEST':              ccScreen.oTest,
             'oooWeight':            ooWeight,
             'oooPower':             ooPower,
@@ -292,6 +323,7 @@ def CostM(request):
 
             'val71':float(request.GET["num71"]),
             'val72':float(request.GET["num72"]),
+
         },
         {
             'title':'CostM',
@@ -299,6 +331,250 @@ def CostM(request):
             'year':datetime.now().year,
         }
     )
+
+def oResuB(request):
+        
+    oCostS = "No"
+    oCostB = "Yes"
+    oCostG = "No"
+    oCostP = "No"
+    oCostT = "No"
+    
+    oDataS = "No"
+    oDataB = "Yes"
+    oDataG = "No"
+    oDataP = "No"
+    oDataT = "No"
+
+
+    ## GET THE VALUES FROM HTML
+    ccBelt = cBelt(float(request.GET["nBeltLength"]),
+                   float(request.GET["nBeltWidth"]),
+                   float(request.GET["nBeltWeightMeter"]),
+                   float(request.GET["nPartWeightMeter"]),
+                   float(request.GET["nFriction"]),
+                   float(request.GET["nVelocity"]),
+                   float(request.GET["nFOS"]),
+                   float(0.7)
+                   )
+
+    ccBelt.calculate_power()
+     
+
+    # SEND VALUES TO NEXT HTML
+    """Renders the contact page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/CostM.html',
+        {
+            'oCostS':oCostS,
+            'oCostB':oCostB,
+            'oCostG':oCostG,
+            'oCostP':oCostP,
+            'oCostT':oCostT,
+            
+            'oDataS':oDataS,
+            'oDataB':oDataB,
+            'oDataG':oDataG,
+            'oDataP':oDataP,
+            'oDataT':oDataT,
+
+            'oooPower': ccBelt.Power
+
+
+
+        },
+        {
+            'title':'CostM',
+            'message':'Your CostM page.',
+            'year':datetime.now().year,
+        }
+    )
+
+def oResuG(request):
+
+    
+    oCostS = "No"
+    oCostB = "No"
+    oCostG = "Yes"
+    oCostP = "No"
+    oCostT = "No"
+    
+    oDataS = "No"
+    oDataB = "No"
+    oDataG = "Yes"
+    oDataP = "No"
+    oDataT = "No"
+
+
+    ## GET THE VALUES FROM HTML
+    ccGrit = cGrit(float(request.GET["nNChannel"]),
+                   float(request.GET["nChannelWidth"]),
+                   float(request.GET["nCivilWidth"]),
+                   float(request.GET["nBridgeLength"]),
+                   float(request.GET["nFriction"]),
+                   float(request.GET["nLinerVelocity"]),
+                   float(request.GET["nSaftyFactor"]),
+                   float(0.7),
+                   float(request.GET["nWheelDiameter"])
+                   )
+
+    ccGrit.calculate()
+     
+
+    # SEND VALUES TO NEXT HTML
+    """Renders the contact page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/CostM.html',
+        {
+            'oCostS':oCostS,
+            'oCostB':oCostB,
+            'oCostG':oCostG,
+            'oCostP':oCostP,
+            'oCostT':oCostT,
+            
+            'oDataS':oDataS,
+            'oDataB':oDataB,
+            'oDataG':oDataG,
+            'oDataP':oDataP,
+            'oDataT':oDataT,
+
+            'oooPower':             ccGrit.Power,
+            'oooDriveRPM':          ccGrit.DriveRPM,
+            'oooWeight':            ccGrit.Weight_Total,
+            'oooWeight_steel':      ccGrit.Weight_steel,
+            'oooWeight_scraper':    ccGrit.Weight_scraper,
+            'oooPower_lifting':     ccGrit.Power_lifting
+
+
+        },
+        {
+            'title':'CostM',
+            'message':'Your CostM page.',
+            'year':datetime.now().year,
+        }
+    )
+
+def oResuP(request):
+
+    
+    oCostS = "No"
+    oCostB = "No"
+    oCostG = "No"
+    oCostP = "Yes"
+    oCostT = "No"
+    
+    oDataS = "No"
+    oDataB = "No"
+    oDataG = "No"
+    oDataP = "Yes"
+    oDataT = "No"
+
+
+
+    ## GET THE VALUES FROM HTML
+    ccPST = cPST(float(request.GET["nTankDiameter"]),
+                float(request.GET["nFriction"]),
+                float(request.GET["nLinerVelocity"]),
+                float(request.GET["nSaftyFactor"]),
+                float(0.8),
+                )
+
+    ccPST.calculate()
+     
+
+    # SEND VALUES TO NEXT HTML
+    """Renders the contact page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/CostM.html',
+        {
+            'oCostS':oCostS,
+            'oCostB':oCostB,
+            'oCostG':oCostG,
+            'oCostP':oCostP,
+            'oCostT':oCostT,
+            
+            'oDataS':oDataS,
+            'oDataB':oDataB,
+            'oDataG':oDataG,
+            'oDataP':oDataP,
+            'oDataT':oDataT,
+            'oooPower':             ccPST.Power,
+            'oooWeight':            ccPST.Weight_Total,
+            'oooWeight_steel':      ccPST.Weight_steel,
+            'oooWeight_scraper':    ccPST.Weight_scraper
+
+
+        },
+        {
+            'title':'CostM',
+            'message':'Your CostM page.',
+            'year':datetime.now().year,
+        }
+    )
+
+def oResuT(request):
+        
+    oCostS = "No"
+    oCostB = "No"
+    oCostG = "No"
+    oCostP = "No"
+    oCostT = "Yes"
+    
+    oDataS = "No"
+    oDataB = "No"
+    oDataG = "No"
+    oDataP = "No"
+    oDataT = "Yes"
+
+
+    ## GET THE VALUES FROM HTML
+    ccThickener = cThickener(float(request.GET["nTankDiameter"]),
+                               float(request.GET["nNArms"]),
+                               float(request.GET["nLinerVelocity"]),
+                               float(request.GET["nSaftyFactor"]),
+                               float(0.8),
+                               float(300)
+                               )
+
+    ccThickener.calculate()
+     
+
+    # SEND VALUES TO NEXT HTML
+    """Renders the contact page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/CostM.html',
+        {
+            'oCostS':oCostS,
+            'oCostB':oCostB,
+            'oCostG':oCostG,
+            'oCostP':oCostP,
+            'oCostT':oCostT,
+            
+            'oDataS':oDataS,
+            'oDataB':oDataB,
+            'oDataG':oDataG,
+            'oDataP':oDataP,
+            'oDataT':oDataT,
+
+            'oooPower':              ccThickener.Power
+            
+        },
+        {
+            'title':'CostM',
+            'message':'Your CostM page.',
+            'year':datetime.now().year,
+        }
+    )
+
+
 
 def DataSheetM(request):
     """Renders the contact page."""

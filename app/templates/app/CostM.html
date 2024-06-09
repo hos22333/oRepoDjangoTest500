@@ -50,9 +50,11 @@
         <button class="tablinks" onclick="openCity(event, 'Tokyo')">Calculation Note</button>
     </div>
 
-    <!-- Tab content -->
+    <!-- Tab content COST SHEET -->
     <div id="London" class="tabcontent">
 
+        {% if oCostS == "Yes" %}
+        <!-- MScreen -->
         <table>
             <tr><th colspan="5">Mechanical Screen Cost Sheet</th></tr>
             <tr class="orange"><td colspan="5">Specifications</td></tr>
@@ -92,11 +94,7 @@
                 <td>Cost per unit</td>
                 <td>Total cost</td>
             </tr>
-
-            {% if val41 != 130000.0 %}
             <tr><td>Gear Motor</td>             <td> 1 </td><td> Units  </td><td> {{val41}} </td><td> {{val41}} </td></tr>
-            {% endif %}
-
             <tr><td>Bearing with tension</td>   <td> 1 </td><td> Units  </td><td> {{val42}} </td><td> {{val42}} </td></tr>
             <tr><td>Chain stst 316</td>         <td> 1 </td><td> M      </td><td> {{val43}} </td><td> {{val43}} </td></tr>
             <tr><td>Drive shaft</td>            <td> 1 </td><td> M      </td><td> {{val44}} </td><td> {{val44}} </td></tr>
@@ -128,15 +126,317 @@
             <tr class="light-blue"><td colspan="4">Risk factor</td>             <td>{{val72}}</td></tr>
             <tr class="light-blue"><td colspan="4">Total Selling Price</td>     <td><strong>{{oooTotalPrice}}</strong></td></tr>
         </table>
+        {% endif %}
 
+        {% if oCostB == "Yes" %}
+        <!-- Belt -->
+        <table>
+            <tr><th colspan="5">Belt Cost Sheet</th></tr>
+            <tr class="orange"><td colspan="5">Specifications</td></tr>
+            <tr><td>Project Name</td><td colspan="4" class="merged"> {{val11}} </td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>Deg</td><td colspan="2" class="merged"></td></tr>
+
+            <tr class="orange"><td colspan="5">Raw Material</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY (Kg)</td>
+                <td>Unit</td>
+                <td>Cost (LE/Kg)</td>
+                <td>Total cost (LE)</td>
+            </tr>
+            <tr><td> ~~~ </td>      <td rowspan="9">{{oooWeight}}</td>  <td rowspan="9"> Kg </td>    <td rowspan="9">{{val31}}</td>     <td rowspan="9">{{oooMaterialcost}}</td></tr>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr class="light-green"><td colspan="4">Total</td>                                                                                      <td>{{oooMaterialcost}}</td></tr>
+
+            <tr class="orange"><td colspan="5">Imported items</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY</td>
+                <td>Unit</td>
+                <td>Cost per unit</td>
+                <td>Total cost</td>
+            </tr>
+            <tr><td>Gear Motor</td> <td> 1 </td><td> Units  </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Units  </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> M      </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> M      </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Unit   </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Unit   </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr class="light-green"><td colspan="4">Total</td>                      <td> ~~~ </td></tr>
+
+            <tr class="orange"><td colspan="5">Manufacturing cost</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY</td>
+                <td>Unit</td>
+                <td>Cost per unit</td>
+                <td>Total cost</td>
+            </tr>
+            <tr><td>Supervision & man power</td>    <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Manufacturing</td>              <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Transportation</td>             <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Consumables</td>                <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Packing</td>                    <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr class="light-green"><td colspan="4">Total</td>  <td>{{oooManufacturingCost}}</td>
+
+            <tr class="light-blue"><td colspan="4">Total cost per unit</td>     <td><strong> ~~~ </strong></td></tr>
+            <tr class="light-blue"><td colspan="4">Margin Factor</td>           <td>{{val71}}</td></tr>
+            <tr class="light-blue"><td colspan="4">Price</td>                   <td><strong> ~~~ </strong></td></tr>
+            <tr class="light-blue"><td colspan="4">Risk factor</td>             <td> ~~~ </td></tr>
+            <tr class="light-blue"><td colspan="4">Total Selling Price</td>     <td><strong> ~~~ </strong></td></tr>
+        </table>
+        {% endif %}
+
+        {% if oCostG == "Yes" %}
+        <!-- Gritremoval -->
+        <table>
+            <tr><th colspan="5">Gritremoval Cost Sheet</th></tr>
+            <tr class="orange"><td colspan="5">Specifications</td></tr>
+            <tr><td>Project Name</td><td colspan="4" class="merged"> {{val11}} </td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>Deg</td><td colspan="2" class="merged"></td></tr>
+
+            <tr class="orange"><td colspan="5">Raw Material</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY (Kg)</td>
+                <td>Unit</td>
+                <td>Cost (LE/Kg)</td>
+                <td>Total cost (LE)</td>
+            </tr>
+            <tr><td> ~~~ </td>      <td rowspan="9">{{oooWeight}}</td>  <td rowspan="9"> Kg </td>    <td rowspan="9">{{val31}}</td>     <td rowspan="9">{{oooMaterialcost}}</td></tr>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr class="light-green"><td colspan="4">Total</td>                                                                                      <td>{{oooMaterialcost}}</td></tr>
+
+            <tr class="orange"><td colspan="5">Imported items</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY</td>
+                <td>Unit</td>
+                <td>Cost per unit</td>
+                <td>Total cost</td>
+            </tr>
+            <tr><td>Gear Motor</td> <td> 1 </td><td> Units  </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Units  </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> M      </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> M      </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Unit   </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Unit   </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr class="light-green"><td colspan="4">Total</td>                      <td> ~~~ </td></tr>
+
+            <tr class="orange"><td colspan="5">Manufacturing cost</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY</td>
+                <td>Unit</td>
+                <td>Cost per unit</td>
+                <td>Total cost</td>
+            </tr>
+            <tr><td>Supervision & man power</td>    <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Manufacturing</td>              <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Transportation</td>             <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Consumables</td>                <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Packing</td>                    <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr class="light-green"><td colspan="4">Total</td>  <td>{{oooManufacturingCost}}</td>
+
+            <tr class="light-blue"><td colspan="4">Total cost per unit</td>     <td><strong> ~~~ </strong></td></tr>
+            <tr class="light-blue"><td colspan="4">Margin Factor</td>           <td>{{val71}}</td></tr>
+            <tr class="light-blue"><td colspan="4">Price</td>                   <td><strong> ~~~ </strong></td></tr>
+            <tr class="light-blue"><td colspan="4">Risk factor</td>             <td> ~~~ </td></tr>
+            <tr class="light-blue"><td colspan="4">Total Selling Price</td>     <td><strong> ~~~ </strong></td></tr>
+        </table>
+        {% endif %}
+
+        {% if oCostP == "Yes" %}
+        <!-- PST -->
+        <table>
+            <tr><th colspan="5">PST Cost Sheet</th></tr>
+            <tr class="orange"><td colspan="5">Specifications</td></tr>
+            <tr><td>Project Name</td><td colspan="4" class="merged"> {{val11}} </td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>Deg</td><td colspan="2" class="merged"></td></tr>
+
+            <tr class="orange"><td colspan="5">Raw Material</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY (Kg)</td>
+                <td>Unit</td>
+                <td>Cost (LE/Kg)</td>
+                <td>Total cost (LE)</td>
+            </tr>
+            <tr><td> ~~~ </td>      <td rowspan="9">{{oooWeight}}</td>  <td rowspan="9"> Kg </td>    <td rowspan="9">{{val31}}</td>     <td rowspan="9">{{oooMaterialcost}}</td></tr>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr class="light-green"><td colspan="4">Total</td>                                                                                      <td>{{oooMaterialcost}}</td></tr>
+
+            <tr class="orange"><td colspan="5">Imported items</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY</td>
+                <td>Unit</td>
+                <td>Cost per unit</td>
+                <td>Total cost</td>
+            </tr>
+            <tr><td>Gear Motor</td> <td> 1 </td><td> Units  </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Units  </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> M      </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> M      </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Unit   </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Unit   </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr class="light-green"><td colspan="4">Total</td>                      <td> ~~~ </td></tr>
+
+            <tr class="orange"><td colspan="5">Manufacturing cost</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY</td>
+                <td>Unit</td>
+                <td>Cost per unit</td>
+                <td>Total cost</td>
+            </tr>
+            <tr><td>Supervision & man power</td>    <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Manufacturing</td>              <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Transportation</td>             <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Consumables</td>                <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Packing</td>                    <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr class="light-green"><td colspan="4">Total</td>  <td>{{oooManufacturingCost}}</td>
+
+            <tr class="light-blue"><td colspan="4">Total cost per unit</td>     <td><strong> ~~~ </strong></td></tr>
+            <tr class="light-blue"><td colspan="4">Margin Factor</td>           <td>{{val71}}</td></tr>
+            <tr class="light-blue"><td colspan="4">Price</td>                   <td><strong> ~~~ </strong></td></tr>
+            <tr class="light-blue"><td colspan="4">Risk factor</td>             <td> ~~~ </td></tr>
+            <tr class="light-blue"><td colspan="4">Total Selling Price</td>     <td><strong> ~~~ </strong></td></tr>
+        </table>
+        {% endif %}
+
+        {% if oCostT == "Yes" %}
+        <!-- Thickener -->
+        <table>
+            <tr><th colspan="5">Thickener Cost Sheet</th></tr>
+            <tr class="orange"><td colspan="5">Specifications</td></tr>
+            <tr><td>Project Name</td><td colspan="4" class="merged"> {{val11}} </td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>mm</td><td colspan="2" class="merged"></td></tr>
+            <tr><td> ~~~ </td>      <td> ~~~ </td><td>Deg</td><td colspan="2" class="merged"></td></tr>
+
+            <tr class="orange"><td colspan="5">Raw Material</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY (Kg)</td>
+                <td>Unit</td>
+                <td>Cost (LE/Kg)</td>
+                <td>Total cost (LE)</td>
+            </tr>
+            <tr><td> ~~~ </td>      <td rowspan="9">{{oooWeight}}</td>  <td rowspan="9"> Kg </td>    <td rowspan="9">{{val31}}</td>     <td rowspan="9">{{oooMaterialcost}}</td></tr>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr><td> ~~~ </td>
+            <tr class="light-green"><td colspan="4">Total</td>                                                                                      <td>{{oooMaterialcost}}</td></tr>
+
+            <tr class="orange"><td colspan="5">Imported items</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY</td>
+                <td>Unit</td>
+                <td>Cost per unit</td>
+                <td>Total cost</td>
+            </tr>
+            <tr><td>Gear Motor</td> <td> 1 </td><td> Units  </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Units  </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> M      </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> M      </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> L.S    </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Unit   </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td> ~~~ </td>      <td> 1 </td><td> Unit   </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr class="light-green"><td colspan="4">Total</td>                      <td> ~~~ </td></tr>
+
+            <tr class="orange"><td colspan="5">Manufacturing cost</td></tr>
+            <tr class="light-orange">
+                <td>Item</td>
+                <td>QTY</td>
+                <td>Unit</td>
+                <td>Cost per unit</td>
+                <td>Total cost</td>
+            </tr>
+            <tr><td>Supervision & man power</td>    <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Manufacturing</td>              <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Transportation</td>             <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Consumables</td>                <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr><td>Packing</td>                    <td> 1 </td><td> L.S </td><td>  ~~~  </td><td>  ~~~  </td></tr>
+            <tr class="light-green"><td colspan="4">Total</td>  <td>{{oooManufacturingCost}}</td>
+
+            <tr class="light-blue"><td colspan="4">Total cost per unit</td>     <td><strong> ~~~ </strong></td></tr>
+            <tr class="light-blue"><td colspan="4">Margin Factor</td>           <td>{{val71}}</td></tr>
+            <tr class="light-blue"><td colspan="4">Price</td>                   <td><strong> ~~~ </strong></td></tr>
+            <tr class="light-blue"><td colspan="4">Risk factor</td>             <td> ~~~ </td></tr>
+            <tr class="light-blue"><td colspan="4">Total Selling Price</td>     <td><strong> ~~~ </strong></td></tr>
+        </table>
+        {% endif %}
 
     </div>
 
+
+    <!-- Tab content Data SHEET -->
     <div id="Paris" class="tabcontent">
 
-
+        {% if oDataS == "Yes" %}
+        <!-- MScreen -->
         <table>
-
             <tr><th colspan="2">Mechanical Screen Data Sheet</th></tr>
             <tr>
                 <td class="medium">Project</td>
@@ -325,6 +625,319 @@
                 <td class="medium" colspan="2">Two sets of bearings</td>
             </tr>
         </table>
+        {% endif %}
+
+        {% if oDataB == "Yes" %}
+        <!-- Belt -->
+        <table>
+            <tr><th colspan="2">Belt Data Sheet</th></tr>
+            <tr><td class="medium">Project</td>         <td class="wide"> {{val11}} </td></tr>
+            <tr><td class="medium">Equipment</td>       <td class="wide">Belt Conveyor</td></tr>
+            <tr><td class="medium">Title</td>           <td class="wide">Technical Datasheet</td></tr>
+            <tr><td class="medium">Issue Date</td>      <td class="wide"> {{oooDateToday}} </td></tr>
+
+            <tr><th colspan="2">Technical data</th></tr>
+            <tr><td class="medium orange" colspan="2">General Data</td></tr>
+            <tr><td class="medium">Manufacturer</td>        <td class="wide"> Ietos Factory </td></tr>
+            <tr><td class="medium">Service</td>             <td class="wide"> Screening Area </td></tr>
+            <tr><td class="medium">Fluid</td>               <td class="wide"> Screening Disposals </td></tr>
+            <tr><td class="medium">Operation</td>           <td class="wide"> Automatic & Manual </td></tr>
+            <tr><td class="medium">Quantity of Units</td>   <td class="wide"> 1 </td></tr>
+            <tr><td class="medium">Country of Origin</td>   <td class="wide"> Egypt </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Design</td></tr>
+            <tr><td class="medium">Width</td>               <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Length</td>              <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Belt Thickness</td>      <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Mounting</td>            <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Chute</td>               <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Drive Unit Data</td></tr>
+            <tr><td class="medium">Type of drive</td>                   <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Power</td>                           <td class="wide"> {{oooPower}} </td></tr>
+            <tr><td class="medium">Power Supply</td>                    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Driving Unit Service Factor</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Motor Insulation Protection</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Isolation / Temp. Class</td>         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Gear Motor</td>                      <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Control Panel Data</td></tr>
+            <tr><td class="medium">Voltage</td>                         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Phase</td>                           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Frequency</td>                       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Insulation Protection</td>           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Panel Thickness</td>                 <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Panel Material</td>                  <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Components Type</td>                 <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Material</td></tr>
+            <tr><td class="medium">Frame</td>                           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Idlers</td>                          <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Belt</td>                            <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Driving & Driven Drum Set</td>       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Belt Scrapper</td>                   <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Dead Plate</td>                      <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Bolts & Nuts</td>                    <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Spare Parts</td></tr>
+            <tr><td class="medium" colspan="2"> 1. One set of bearing </td></tr>
+            <tr><td class="medium" colspan="2"> 2. Five rollers with accessories </td></tr>
+            <tr><td class="medium" colspan="2"> 3. One set of bearing for motor </td></tr>
+        </table>
+        {% endif %}
+
+        {% if oDataG == "Yes" %}
+        <!-- Gritremoval -->
+        <table>
+            <tr><th colspan="2">Gritremoval Data Sheet</th>                                     </tr>
+
+            <tr><td class="medium">Project</td>     <td class="wide"> {{val11}} </td>           </tr>
+            <tr><td class="medium">Equipment</td>   <td class="wide">Gritremoval</td>           </tr>
+            <tr><td class="medium">Title</td>       <td class="wide">Technical Datasheet</td>   </tr>
+            <tr><td class="medium">Issue Date</td>  <td class="wide"> {{oooDateToday}} </td>    </tr>
+
+            <tr><th colspan="2">Technical data</th>                                             </tr>
+            <tr><td class="medium orange" colspan="2">General Data</td>                         </tr>
+            <tr><td class="medium">Manufacturer</td>        <td class="wide"> Ietos Factory </td>   </tr>
+            <tr><td class="medium">Service</td>             <td class="wide"> Grit & Grease Removal Tank </td>  </tr>
+            <tr><td class="medium">Fluid</td>               <td class="wide"> Sewage </td></tr>
+            <tr><td class="medium">Operation</td>           <td class="wide"> Automatic & Manual </td></tr>
+            <tr><td class="medium">Quantity of Units</td>   <td class="wide"> 1 </td></tr>
+            <tr><td class="medium">Country of Origin</td>   <td class="wide"> Egypt </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Design</td></tr>
+            <tr><td class="medium">Type</td> <td class="wide"> Longitudinal Scraper Bridge </td></tr>
+            <tr><td class="medium">Channel Length</td>          <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Channel Depth</td>           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Channel Width</td>           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Water Depth</td>             <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Bridge Length</td>           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Walkway Width</td>           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Handrail Height</td>         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Side Plate (Safety)</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Scraper Height</td>          <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Scraper Thickness</td>       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Rubber Strips Thickness</td> <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Live Load</td>               <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Guide Type</td>              <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Electrical feeding</td>      <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Drive Wheels</td></tr>
+            <tr><td class="medium">Drive Wheel Quantity</td>    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Drive Wheel Diameter</td>    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Drive Wheel Material</td>    <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Drive Unit Data</td></tr>
+            <tr><td class="medium">Power</td>                           <td class="wide"> {{oooPower}} </td></tr>
+            <tr><td class="medium">Power Supply</td>                    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Driving Unit Service Factor</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Motor Insulation Protection</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Isolation / Temp. Class</td>         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Gear Motor</td>                      <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Lifting Drive Unit Data</td></tr>
+            <tr><td class="medium">Power</td>                           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Power Supply</td>                    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Driving Unit Service Factor</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Motor Insulation Protection</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Isolation / Temp. Class</td>         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Gear Motor</td>                      <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Control Panel Data</td></tr>
+            <tr><td class="medium">Voltage</td>                         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Phase</td>                           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Frequency</td>                       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Insulation Protection</td>           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Panel Thickness</td>                 <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Panel Material</td>                  <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Components Type</td>                 <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Material</td></tr>
+            <tr><td class="medium">Bridge structure</td>            <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Grating</td>                     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Hand railing</td>                <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">End carriage</td>                <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Surface scraper</td>             <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Bottom scraper</td>              <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Scraper Support</td>             <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Wearing Strips for Scraper</td>  <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Bolts & Nuts</td>                <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Spare Parts</td></tr>
+            <tr><td class="medium" colspan="2">1. Two complete bottom scrapers for grit</td></tr>
+            <tr><td class="medium" colspan="2">2. Two complete scrapers for oil</td></tr>
+            <tr><td class="medium" colspan="2">3. Four wheels with Rubber tires</td></tr>
+            <tr><td class="medium" colspan="2">4. Two sets of bearings</td></tr>
+        </table>
+        {% endif %}
+
+        {% if oDataP == "Yes" %}
+        <!-- PST -->
+        <table>
+            <tr><th colspan="2">PST Data Sheet</th></tr>
+
+            <tr><td class="medium">Project</td>     <td class="wide"> {{val11}} </td></tr>
+            <tr><td class="medium">Equipment</td>   <td class="wide"> PST </td></tr>
+            <tr><td class="medium">Title</td>       <td class="wide">Technical Datasheet</td></tr>
+            <tr><td class="medium">Issue Date</td>  <td class="wide"> {{oooDateToday}} </td></tr>
+
+            <tr><th colspan="2">Technical data</th> </tr>
+            <tr><td class="medium orange" colspan="2">General Data</td> </tr>
+            <tr><td class="medium">Manufacturer</td>        <td class="wide"> Ietos Factory </td>   </tr>
+            <tr><td class="medium">Service</td>             <td class="wide"> Grit & Grease Removal Tank </td>  </tr>
+            <tr><td class="medium">Fluid</td>               <td class="wide"> Sewage </td></tr>
+            <tr><td class="medium">Operation</td>           <td class="wide"> Automatic & Manual </td></tr>
+            <tr><td class="medium">Quantity of Units</td>   <td class="wide"> 1 </td></tr>
+            <tr><td class="medium">Country of Origin</td>   <td class="wide"> Egypt </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Design</td></tr>
+            <tr><td class="medium">Type</td> <td class="wide"> Longitudinal Scraper Bridge </td></tr>
+            <tr><td class="medium">Tank Diameter</td>                       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Side Wall Depth</td>                     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Water depth</td>                         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Bridge length</td>                       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Handrail Height </td>                    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Walkway Width</td>                       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Side Plate</td>                          <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Sludge Scraper Height</td>               <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Scraper  Thickness</td>                  <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Scraper Rubber Strips Thickness</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Live Load</td>                           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Number of bottom blades </td>            <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Number of surface blades </td>           <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Drive Wheels</td></tr>
+            <tr><td class="medium">Drive Wheel Quantity</td>    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Drive Wheel Diameter</td>    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Drive Wheel Material</td>    <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Weir & Baffle</td></tr>
+            <tr><td class="medium">Weir Type</td>                   <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Weir Length</td>                 <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Weir Height</td>                 <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Weir Thickness</td>              <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Weir Adjustable Height</td>      <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Rubber Sealing Thickness</td>    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Baffle Height</td>               <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Baffle Thickness</td>            <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Drive Unit Data</td></tr>
+            <tr><td class="medium">Power</td>                           <td class="wide"> {{oooPower}} </td></tr>
+            <tr><td class="medium">Power Supply</td>                    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Driving Unit Service Factor</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Motor Insulation Protection</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Isolation / Temp. Class</td>         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Torque Limiter</td>                  <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Gear Motor</td>                      <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Slip Ring</td></tr>
+            <tr><td class="medium">No. of Rings</td>                           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Origin</td>                    <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Control Panel Data</td></tr>
+            <tr><td class="medium">Voltage</td>                         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Phase</td>                           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Frequency</td>                       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Insulation Protection</td>           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Panel Thickness</td>                 <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Panel Material</td>                  <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Components Type</td>                 <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Material</td></tr>
+            <tr><td class="medium">Bridge structure</td>            <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Grating</td>                     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Hand railing</td>                <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">End carriage</td>                <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Surface scraper</td>             <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Bottom scraper</td>              <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Scraper Support</td>             <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Wearing Strips for Scraper</td>  <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Bolts & Nuts</td>                <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Spare Parts</td></tr>
+            <tr><td class="medium" colspan="2">1. Two complete sets of rubber wearing strips for sludge scraper.</td></tr>
+            <tr><td class="medium" colspan="2">2. One set of all kinds of bearings.</td></tr>
+            <tr><td class="medium" colspan="2">3. One complete set of slip ring blocks (complete with slip rings)</td></tr>
+
+        </table>
+        {% endif %}
+
+        {% if oDataT == "Yes" %}
+        <!-- Thickener -->
+        <table>
+            <tr><th colspan="2">Thickener Data Sheet</th>                                     </tr>
+
+            <tr><td class="medium">Project</td>     <td class="wide"> {{val11}} </td>           </tr>
+            <tr><td class="medium">Equipment</td>   <td class="wide"> Thickener </td>           </tr>
+            <tr><td class="medium">Title</td>       <td class="wide"> Technical Datasheet </td>   </tr>
+            <tr><td class="medium">Issue Date</td>  <td class="wide"> {{oooDateToday}} </td>    </tr>
+
+            <tr><th colspan="2">Technical data</th>                                             </tr>
+            <tr><td class="medium orange" colspan="2">General Data</td>                         </tr>
+            <tr><td class="medium">Manufacturer</td>        <td class="wide"> Ietos Factory </td>   </tr>
+            <tr><td class="medium">Service</td>             <td class="wide"> Thickener </td>  </tr>
+            <tr><td class="medium">Fluid</td>               <td class="wide"> Sewage </td></tr>
+            <tr><td class="medium">Operation</td>           <td class="wide"> Automatic & Manual </td></tr>
+            <tr><td class="medium">Quantity of Units</td>   <td class="wide"> 1 </td></tr>
+            <tr><td class="medium">Country of Origin</td>   <td class="wide"> Egypt </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Design</td></tr>
+            <tr><td class="medium">Type</td> <td class="wide"> Longitudinal Scraper Bridge </td></tr>
+            <tr><td class="medium">Tank Inner Diameter</td>                       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Side Wall Depth</td>                     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Water Level</td>                         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Number of Arms</td>                       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Scraper Height </td>                    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Scraper Thickness</td>                       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Cleaning Brushes</td>                          <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2"> Weir </td></tr>
+            <tr><td class="medium">Weir Type</td>                   <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Weir Length</td>                 <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Weir Height</td>                 <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Weir Thickness</td>              <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Rubber Sealing Thickness</td>    <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Drive Unit Data</td></tr>
+            <tr><td class="medium">Power</td>                           <td class="wide"> {{oooPower}} </td></tr>
+            <tr><td class="medium">Power Supply</td>                    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Driving Unit Service Factor</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Motor Insulation Protection</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Isolation / Temp. Class</td>         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Torque Limiter</td>                  <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Gear Motor</td>                      <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Control Panel Data</td></tr>
+            <tr><td class="medium">Voltage</td>                         <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Phase</td>                           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Frequency</td>                       <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Insulation Protection</td>           <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Panel Thickness</td>                 <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Panel Material</td>                  <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Components Type</td>                 <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Material</td></tr>
+            <tr><td class="medium">Bridge structure</td>    <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Rotating shaft</td>      <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Picket fence</td>        <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Supporting arms</td>     <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Weir</td>                <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Bottom scraper</td>      <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Scraper Strips</td>      <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Diffusion Drum</td>      <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Drive Unit</td>          <td class="wide"> ~~~ </td></tr>
+            <tr><td class="medium">Bolts & Nuts</td>        <td class="wide"> ~~~ </td></tr>
+
+            <tr><td class="medium orange" colspan="2">Spare Parts</td></tr>
+            <tr><td class="medium" colspan="2">1. Two complete sets of rubber wearing strips for sludge scraper.</td></tr>
+            <tr><td class="medium" colspan="2">2. Two sets of of bearings.</td></tr>
+
+        </table>
+        {% endif %}
+
+        <br />
+        <br />
+
 
     </div>
 
@@ -335,6 +948,11 @@
 
         <h3>Motor Power</h3>
         <p>{{oooPower}}</p>
+        <p>{{oooDriveRPM}}</p>
+        <p>{{oooWeight}}</p>
+        <p>{{oooWeight_steel}}</p>
+        <p>{{oooWeight_scraper}}</p>
+        <p>{{oooPower_lifting}}</p>
 
         <h3>Motor Speed</h3>
         <p>{{oooSpeed}}</p>

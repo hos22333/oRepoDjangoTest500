@@ -32,6 +32,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app\cDataBaseMySQL.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\forms.py" />
     <Compile Include="app\models.py" />
     <Compile Include="app\z_module1.py" />
@@ -60,8 +63,6 @@
   <ItemGroup>
     <Content Include="app\templates\app\CostM.html" />
     <Content Include="app\templates\app\DataSheetM.html" />
-    <Content Include="app\templates\app\form.html" />
-    <Content Include="app\templates\app\result.html" />
     <Content Include="app\templates\app\WebPage01.html" />
     <Content Include="app\templates\app\WebPage02.html" />
     <Content Include="app\templates\app\WebPage03.html" />
