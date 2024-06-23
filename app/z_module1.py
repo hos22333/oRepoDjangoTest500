@@ -145,35 +145,13 @@ class cBelt:
         self.Power = None
 
     def calculate_power(self):
-        # Calculate belt weight
-        belt_weight = self.belt_weight_per_meter * self.length * self.width * 2
 
-        # Calculate part weight
-        part_weight = self.part_weight_per_meter * self.length * self.width
-
-        # Calculate normal force
-        normal_force = (belt_weight + part_weight) * 10
-
-        # Calculate horizontal force
-        horizontal_force = normal_force * self.friction
-
-        # Calculate power
-        calc_power = horizontal_force * self.velocity
-
-        # Calculate total power
-        total_power = (calc_power * self.fos) / self.eff
-
-        # Format the power string
-        power_str = f"{total_power:.2f}"
-        self.Power = power_str
+        self.Power = 552
 
         # Log the result (placeholder function for WriteToSheetBelt)
         self.log_to_sheet(self.length, self.belt_weight_per_meter, self.part_weight_per_meter, self.friction, self.velocity, self.fos, self.eff, power_str, "0", "0")
         
 
-    def log_to_sheet(self, *args):
-        # Placeholder function for WriteToSheetBelt
-        print(f"Logging to sheet: {args}")
 
 ##########################
 #         Gritremoval    #
@@ -198,56 +176,22 @@ class cGrit:
         self.Power_lifting = None
 
     def calculate(self):
-        weight_per_meter_sheet = 80
-        weight_per_meter_ipn = 15
-        weight_per_meter_other = 25
-        weight_per_meter_total = weight_per_meter_sheet + weight_per_meter_ipn + weight_per_meter_other
-        weight_one_end_carriage = 220
-        weight_per_meter_handrail = 8
-        weight_per_meter_scraper = 70
-
-        # Weight calculations
-        walkway_weight = weight_per_meter_total * self.bridge_length
-        weight_end_carriage_total = weight_one_end_carriage * 2
-        weight_handrail_total = weight_per_meter_handrail * self.bridge_length * 2
-        weight_scraper_total = weight_per_meter_scraper * self.channel_width * self.n_channel * 2
-
-        total_weight_steel = walkway_weight + weight_end_carriage_total + weight_handrail_total
-        total_weight = total_weight_steel + weight_scraper_total
         
-        self.Weight_Total = f"{total_weight:.2f}"
-        self.Weight_steel = f"{total_weight_steel:.2f}"
-        self.Weight_scraper = f"{weight_scraper_total:.2f}"
+        self.Weight_Total = 5622
+        self.Weight_steel = 2533
+        self.Weight_scraper = 2544
+        
+        self.Power = 653
 
-        # Power calculations
-        normal_force = total_weight * 10
-        horizontal_force = normal_force * self.friction
-        calc_power = horizontal_force * self.velocity
-        total_power = (calc_power * self.fos) / self.eff
-        self.Power = f"{total_power:.2f}"
+        
+        self.Power_lifting = 354
 
-
-        # Lifting power calculations
-        lifting_wheel_dia = 0.2
-        lifting_rpm = 3.6
-        lifting_velocity = (3.14 * lifting_wheel_dia * lifting_rpm) / 60
-        lifting_weight = weight_per_meter_scraper * self.channel_width * self.n_channel
-        lifting_power = lifting_weight * 10 * lifting_velocity
-        lifting_motor_power = (lifting_power * self.fos) / 0.7
-        self.Power_lifting = f"{lifting_motor_power:.2f}"
-
-        # Speed calculations
-        speed_rps = self.velocity / (3.14 * self.wheel_diameter)
-        speed_rpm = speed_rps * 60
-        self.DriveRPM =  f"{speed_rpm:.2f}"
+        
+        self.DriveRPM =  256
            
         #self.log_to_sheet(self.n_channel, self.channel_width * 1000, self.civil_width * 1000, self.bridge_length * 1000, self.friction, self.velocity * 1000, self.fos, self.eff, self.wheel_diameter * 1000, power_str, total_weight, total_weight_steel, weight_scraper_total, lifting_motor_power_str, str_speed_rpm)
 
 
-
-    def log_to_sheet(self, *args):
-        # Placeholder function for WriteToSheetGritremoval
-        print(f"Logging to sheet: {args}")
 
 ##########################
 #         PST            #
@@ -267,33 +211,12 @@ class cPST:
 
 
     def calculate(self):
-        weight_per_meter_sheet = 80
-        weight_per_meter_ipn = 15
-        weight_per_meter_other = 25
-        weight_per_meter_total = weight_per_meter_sheet + weight_per_meter_ipn + weight_per_meter_other
-        weight_one_end_carriage = 220
-        weight_per_meter_handrail = 8
-        weight_per_meter_scraper = 70
-
-        # Weight calculations
-        walkway_weight = weight_per_meter_total * self.walkway_length
-        weight_end_carriage_total = weight_one_end_carriage * 2
-        weight_handrail_total = weight_per_meter_handrail * self.walkway_length * 2
-        weight_scraper_total = weight_per_meter_scraper * self.walkway_length * 2
-
-        total_weight_steel = walkway_weight + weight_end_carriage_total + weight_handrail_total
-        total_weight = total_weight_steel + weight_scraper_total
-
-        self.Weight_Total = total_weight
-        self.Weight_steel = total_weight_steel
-        self.Weight_scraper = weight_scraper_total
-
-        # Power calculations
-        normal_force = total_weight * 10
-        horizontal_force = normal_force * self.friction
-        calc_power = horizontal_force * self.velocity
-        total_power = (calc_power * self.fos) / self.eff
-        self.Power = total_power
+        
+        self.Weight_Total = 454
+        self.Weight_steel = 4277
+        self.Weight_scraper = 578
+        
+        self.Power = 354
  
 ##########################
 #        Thickener       #
@@ -310,20 +233,11 @@ class cThickener:
         self.Power = None
 
     def calculate(self):
-        # Weight calculations
-        hor_force = self.load_per_meter * (self.diameter / 2) * self.n_arm
-        calc_power = hor_force * self.velocity
-        total_power = (calc_power * self.fos) / self.eff
+        
 
-        ret_str1 = f"Power: {total_power} Wat"
-
-        self.Power = total_power
+        self.Power = 539
 
   
-
-    def log_to_sheet(self, *args):
-        # Placeholder function for WriteToSheetThickener
-        print(f"Logging to sheet: {args}")
 
 ##########################
 #        Mixer Rec       #
@@ -344,127 +258,6 @@ class MixerRec500:
         self.eff_gearbox = 0.9
 
     def calculate(self):
-        area = self.length * self.width
-        volume = self.length * self.width * self.water_depth
-        equivalent_diameter = math.sqrt((4 * area) / math.pi)
-        impeller_diameter = equivalent_diameter * self.impeller_diameter_factor
 
-        power11 = (self.velocity_gradient ** 2) * self.water_kinematic_viscosity * volume
-        speed_rps = ((power11) / (self.impeller_coefficient * self.water_density * (impeller_diameter ** 5))) ** (1/3)
-        speed_rpm = speed_rps * 60
-        power22 = self.impeller_coefficient * self.water_density * (speed_rps ** 3) * (impeller_diameter ** 5)
-
-        power_needed = (power11 * self.safety_factor) / (self.eff_from_impeller_to_water * self.eff_motor * self.eff_gearbox)
-
-        power_needed_str = f"{power_needed:.2f}"
-        power11_str = f"{power11:.2f}"
-        impeller_diameter_str = f"{impeller_diameter:.2f}"
-        speed_rpm_str = f"{speed_rpm:.2f}"
-
-        self.log_to_sheet(self.length, self.width, self.water_depth, self.impeller_coefficient, self.velocity_gradient, self.impeller_diameter_factor, self.water_kinematic_viscosity, self.water_density, self.safety_factor, power_needed_str, impeller_diameter_str, speed_rpm_str, "0", "0", "0")
-
-        result = {
-            "value1": f"Power: {power_needed_str} Wat",
-            "value2": f"ImpellerDiameter: {impeller_diameter_str} Meter",
-            "value3": f"Speed: {speed_rpm_str} RPM",
-        }
-
-        return result
-
-    def log_to_sheet(self, *args):
-        # Placeholder function for WriteToSheetMixer
-        print(f"Logging to sheet: {args}")
-
-##########################
-#        Mixer Cir       #
-##########################
-class MixerCir500:
-    def __init__(self, var1, var3, var4, var5, var6, var7, var8, var9):
-        self.length = var1
-        self.water_depth = var3
-        self.impeller_coefficient = var4
-        self.velocity_gradient = var5
-        self.impeller_diameter_factor = var6
-        self.water_kinematic_viscosity = var7
-        self.water_density = var8
-        self.safety_factor = var9
-        self.eff_from_impeller_to_water = 0.8
-        self.eff_motor = 0.9
-        self.eff_gearbox = 0.9
-
-    def calculate(self):
-        area = (math.pi / 4) * self.length * self.length
-        volume = area * self.water_depth
-        equivalent_diameter = math.sqrt((4 * area) / math.pi)
-        impeller_diameter = equivalent_diameter * self.impeller_diameter_factor
-
-        power11 = (self.velocity_gradient ** 2) * self.water_kinematic_viscosity * volume
-        speed_rps = ((power11) / (self.impeller_coefficient * self.water_density * (impeller_diameter ** 5))) ** (1/3)
-        speed_rpm = speed_rps * 60
-        power22 = self.impeller_coefficient * self.water_density * (speed_rps ** 3) * (impeller_diameter ** 5)
-
-        power_needed = (power11 * self.safety_factor) / (self.eff_from_impeller_to_water * self.eff_motor * self.eff_gearbox)
-
-        power_needed_str = f"{power_needed:.2f}"
-        power11_str = f"{power11:.2f}"
-        impeller_diameter_str = f"{impeller_diameter:.2f}"
-        speed_rpm_str = f"{speed_rpm:.2f}"
-
-        self.log_to_sheet(self.length, "0", self.water_depth, self.impeller_coefficient, self.velocity_gradient, self.impeller_diameter_factor, self.water_kinematic_viscosity, self.water_density, self.safety_factor, power_needed_str, impeller_diameter_str, speed_rpm_str, "0", "0", "0")
-
-        result = {
-            "value1": f"Power: {power_needed_str} Wat",
-            "value2": f"ImpellerDiameter: {impeller_diameter_str} Meter",
-            "value3": f"Speed: {speed_rpm_str} RPM",
-        }
-
-        return result
-
-    def log_to_sheet(self, *args):
-        # Placeholder function for WriteToSheetMixer
-        print(f"Logging to sheet: {args}")
-
-##########################
-#         Tanks Rec      #
-##########################
-
-class RecTankCalc500:
-    def __init__(self, RT500var1, RT500var2, RT500var3, RT500var4, RT500var5, RT500var6, RT500var7):
-        self.c2 = RT500var1
-        self.c3 = RT500var2
-        self.c4 = RT500var3
-        self.c5 = RT500var4
-        self.c6 = RT500var5
-        self.c20 = RT500var6
-        self.c23 = RT500var7
-
-    def calculate(self):
-        pl_shell = ((self.c2 + self.c2 + self.c3 + self.c3) / 1000) * (self.c4 / 1000) * (self.c5 / 1000) * 8000
-        pl_base = (self.c2 / 1000) * (self.c3 / 1000) * (self.c6 / 1000) * 8000
-        pl_split = (self.c3 / 1000) * (self.c4 / 1000) * (self.c5 / 1000) * 8000 * self.c20
-        total_plates = pl_shell + pl_base + pl_split
-
-        n_of_lvls = self.c4 / 500
-        stif_horizontal = n_of_lvls * ((self.c2 + self.c2 + self.c3 + self.c3) / 1000) * self.c23
-        stif_vertical = ((self.c2 + self.c2 + self.c3 + self.c3) / 1000) * (self.c4 / 1000) * self.c23
-        stif_base = (((self.c2 / 1000) * (self.c3 / 1000)) + (3 * (self.c2 / 1000))) * self.c23
-        stif_inner = n_of_lvls * (self.c3 / 1000) * self.c23 * self.c20
-
-        total_stif = stif_horizontal + stif_vertical + stif_base + stif_inner
-
-        total_weight = 1 * (total_plates + total_stif)
-        total_weight = round(total_weight, 2)
-
-        self.log_to_sheet(self.c2, self.c3, self.c4, self.c5, self.c6, self.c20, self.c23, total_weight, "0")
-
-        result = {
-            "value1": total_weight,
-        }
-
-        return result
-
-    def log_to_sheet(self, *args):
-        # Placeholder function for WriteToSheetRecTank
-        print(f"Logging to sheet: {args}")
-
+        return "6655"
 
